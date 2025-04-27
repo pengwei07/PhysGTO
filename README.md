@@ -109,8 +109,8 @@ input_field2 = [
 
 input mesh points. X_dim, Y_dim, Z_dim are input dimensions of geometry.
 
-- **Note**: The input fields in our framework are flexible and task-dependent: they can be absent or numerous depending on the problem setting. <br /> <br />
-For example, in 3D vehicle pressure estimation, no additional input fields are required beyond the geometry itself;In unstructured mesh problems, the inputs may include initial states, various physical fields, or other relevant physical information;For long-term dynamics forecasting, the inputs typically consist of the initial conditions, node types, and other auxiliary condition fields. <br /> <br />
+- **Note**: The input fields in our framework are flexible and task-dependent: they can be absent or numerous depending on the problem setting. <br />
+For example, in 3D vehicle pressure estimation, no additional input fields are required beyond the geometry itself;In unstructured mesh problems, the inputs may include initial states, various physical fields, or other relevant physical information;For long-term dynamics forecasting, the inputs typically consist of the initial conditions, node types, and other auxiliary condition fields. <br />
 Additionally, for temporal problems, we incorporate **explicit time encoding** to further enhance model performance.
 This flexible input design significantly improves the model’s ability to adapt and generalize across a wide range of complex scenarios.
 
