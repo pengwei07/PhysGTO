@@ -86,9 +86,9 @@ Cells = [
 
 - **Cells**: (N_cells x 3) numpy array, representing Geometric Cells, which contains three points. The minimum index is `0`, and the maximum value is `N_points-1`.
 
-- **Note**:
-    I. For a single sample, The number of points must match, i.e, ``X.shape[0]=Y.shape[0]``, but it can vary with different samples.
-    II. If additional preprocessing is required for the data, please modify it in the corresponding dataset file in the directory `code/src`
+- **Note**: <br />
+    **I.** For a single sample, The number of points must match, i.e, ``X.shape[0]=Y.shape[0]``, but it can vary with different samples. <br />
+    **II.** If additional preprocessing is required for the data, please modify it in the corresponding dataset file in the directory `code/src`
 
 The field input should be as follows:
 
