@@ -1,0 +1,48 @@
+{ 
+    "seed": 2024, 
+    "name": "DrivAerNet_base_epo_500_gpu_3_ddp",
+    "save_path": "result",
+
+    "dataset": {  
+        "data_path": "/home/code/car_task/DrivAerNet/data/DrivAerNet_dataset.h5",
+        "train": {
+            "batchsize": 1,
+            "num_workers": 0,
+            "sample_rate": 0.05
+            },
+        "test": {
+            "batchsize": 1,
+            "num_workers": 0,
+            "sample_rate": 0.05
+            },
+
+        "press_mean": -93.1184,
+        "press_std": 113.3943,
+        "cd_mean": 0.3119,
+        "cd_std": 0.0263,
+        "cl_mean": 0.0246,
+        "cl_std": 0.0847,
+        "cl_f_mean": -0.0977,
+        "cl_f_std": 0.1139,
+        "cl_r_mean": 0.1224,
+        "cl_r_std": 0.0492
+        },
+
+    "model": {
+        "if_init": true,
+        "space_size": 3,
+        "pos_enc_dim": 7,
+        "N_block": 4,
+        "in_dim": 1,
+        "out_dim": 1,
+        "enc_dim": 128,
+        "n_head": 4,
+        "n_token": 128
+    },
+    
+    "train": {
+        "epoch": 300,
+        "lr": 2.5e-4
+    },
+    "if_save": true
+}

@@ -1,0 +1,81 @@
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from einops import rearrange
+import math
+
+class Atten(nn.Module): 
+    def __init__(self, 
+                n_token=128,
+                c_dim=128, 
+                n_heads=4):
+        super(Atten, self).__init__()
+        
+        self.c_dim = c_dim
+        self.n_token = n_token
+        self.n_heads = n_heads
+        
+        # Learnable query
+        self.Q = nn.Parameter(torch.randn(self.n_token, self.c_dim), requires_grad=True)
+
+        # Multihead attention layers
+        self.attention1 = nn.MultiheadAttention(embed_dim=self.c_dim, num_heads=self.n_heads, batch_first=True)
+        self.attention2 = nn.MultiheadAttention(embed_dim=self.c_dim, num_heads=self.n_heads, batch_first=True)
+        self.attention3 = nn.MultiheadAttention(embed_dim=self.c_dim, num_heads=self.n_heads, batch_first=True)
+
+    def forward(self, W0):   
+        # Step 1: Initial attention with learned query
+        
+        batch = W0.shape[0]
+        learned_Q = self.Q.unsqueeze(0).repeat(batch, 1, 1)
+        W, _ = self.attention1(learned_Q, W0, W0)
+    
+        # Step 2: Self-attention on the transformed result
+        W, _ = self.attention2(W, W, W)
+        
+        # Step 3: Position-aware attention
+        W, _ = self.attention3(W0, W, W)
+    
+        return W
+
+# class Atten(nn.Module):
+#     def __init__(self, c_dim=128, n_token=128, n_heads=4):
+#         super().__init__()
+#         self.n_heads = n_heads
+#         self.token_dim = c_dim // n_heads
+        
+#         # Learnable query
+#         self.Q = nn.Parameter(torch.randn(n_heads, n_token, self.token_dim) / self.token_dim**0.5)
+        
+#         # 分离KV投影
+#         self.kv_1 = nn.Linear(c_dim, 2 * c_dim)
+#         self.kv_2 = nn.Linear(self.token_dim, 2 * self.token_dim)
+#         self.q_3 = nn.Linear(c_dim, c_dim)
+        
+#         # 输出投影加入门控机制
+#         self.out_proj = nn.Linear(self.token_dim, self.token_dim)
+
+#     def forward(self, x):
+                
+#         # Step 1: First attention layer
+#         k1, v1 = self.kv_1(x).chunk(2, dim=-1)
+#         k1 = rearrange(k1, 'b n (h c) -> b h n c', h=self.n_heads)
+#         v1 = rearrange(v1, 'b n (h c) -> b h n c', h=self.n_heads)
+        
+#         attn1 = torch.einsum('h m c, b h n c -> b h m n', self.Q, k1) / self.token_dim**0.5
+#         attn1 = F.softmax(attn1, dim=-1)
+#         out1 = torch.einsum('b h m n, b h n c -> b h m c', attn1, v1)
+        
+#         # Step 2: Self-attention
+#         k2, v2 = self.kv_2(out1).chunk(2, dim=-1)
+        
+#         # Step 3: Cross attention
+#         q3 = rearrange(self.q_3(x), 'b n (h c) -> b h n c', h=self.n_heads)
+#         attn2 = torch.einsum('b h n c, b h m c -> b h n m', q3, k2) / self.token_dim**0.5
+#         attn2 = F.softmax(attn2, dim=-1)
+#         out = torch.einsum('b h n m, b h m c -> b h n c', attn2, v2)
+        
+#         # Reshape and apply gated output projection
+#         out = rearrange(self.out_proj(out), 'b h n c -> b n (h c)')
+        
+#         return out
