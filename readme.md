@@ -1,23 +1,14 @@
 # PhysGTO
+**PhysGTO: An Efficient Graph-Transformer Operator for Learning Physical Dynamics with Manifolds Embedding**
+
+In this work, we propose a novel neural operator model for performing end-to-end simulations in computational mechanics. Accurate and efficient physical simulations are essential in science and engineering, yet traditional numerical solvers face challenges in computational cost when handling simulations across scenarios involving complex geometries, varying boundary/initial conditions, and diverse physical parameters. In recent years, while deep learning offers promising alternatives, existing methods often struggle with flexibility and generalization, particularly on unstructured meshes, which significantly limits their practical applicability. To address these challenges, we propose PhysGTO, a Graph-Transformer Operator for learning physical dynamics through explicit manifold embeddings, which can achieve state-of-the-art prediction accuracy while significantly reducing the computational cost compared to advanced deep learning models.
 
 <p align="center">
   <img src="figs/blood_v_gif.gif" alt="Image 1" width="20%" style="display:inline-block; margin-right:10px;">
   <img src="figs/cylinder_v_gif.gif" alt="Image 2" width="55%" style="display:inline-block;">
 </p>
 
-PhysGTO: An Efficient Graph-Transformer Operator for Learning Physical Dynamics with Manifolds Embedding
-
-Traditional numerical solvers for physical simulations face significant computational burdens across complex, dynamic scenarios. To overcome these challenges, we propose PhysGTO, an efficient Graph-Transformer Operator characterized by:
-
-- Unified Graph Embedding: **Aligns heterogeneous conditions and samples topology-aware graphs for structure-preserving discretization.**
-
-- Flux-Oriented Message **Passing: Captures fine-grained local dynamics with lightweight computation.**
-
-- Projection-Inspired **Attention: Models global dependencies efficiently with linear complexity.**
-
-- Manifold Embedding: **Enhances geometric adaptability and cross-scenario generalization.**
-
-- State-of-the-Art Performance: **Achieves leading accuracy and major computational savings across eleven diverse unstructured mesh benchmarks.**
+**Visualization results. Left: Visualization of Blood Flow. Right: Visualization of Cylinder Flow.** The first row shows the ground-truth velocity magnitude ($\sqrt{u^2+v^2}$ for 2D, or $\sqrt{u^2+v^2+w^2}$ for 3D), while the second and third rows present the prediction errors (**abs error**) of the state-of-the-art baseline and the proposed PhysGTO, respectively. Here, **abs error** refers to $|\hat{u}(x) - u(x)|$, where $\hat{u}(x)$ and $u(x)$ denote the predicted and ground-truth values, respectively.  
 
 ## A comprehensive benchmark spanning eleven datasets
 
