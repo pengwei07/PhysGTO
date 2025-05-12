@@ -12,9 +12,9 @@ In this work, we propose a novel neural operator model for performing end-to-end
 
 ## A comprehensive benchmark spanning eleven datasets
 
-This benchmark suite covers a wide range of forward and temporal PDE problems across eleven diverse datasets, including complex geometries (e.g., car aerodynamics, vascular structures) and fine-grained temporal simulations (up to 990 steps). The datasets vary significantly in spatial resolution and temporal complexity, providing a robust testbed for evaluating physics-informed and surrogate modeling methods. Problems are categorized into steady-state (purple and green) and transient (red) groups, with up to 10× variation in scale.
+![Benchmark Image](figs/benchmark.jpg)
 
-![Benchmark Image](figs/fig1.jpg)
+Comparison of all benchmarks. PhysGTO is evaluated across eleven representative datasets spanning three major benchmark categories with mesh resolutions ranging from 3k to over 300k. Notably, PhysGTO achieves state-of-the-art performance across all datasets, demonstrating strong scalability and adaptability to high-fidelity tasks under limited computational resources.
 
 ## Results
 
@@ -22,22 +22,22 @@ PhysGTO is a generalizable surrogate modeling framework designed for challenging
 
 ### 1.PhysGTO excels in learning complex physical patterns on unstructured meshes
 
-![Task1](figs/fig2.jpg)
+![Task1](figs/result_1.jpg)
 
-PhysGTO outperforms NORM in modeling complex physical dynamics across unstructured meshes, demonstrating superior generalization on five diverse PDE tasks involving intricate geometries and multi-physics coupling.
+PhysGTO outperforms in modeling complex physical dynamics across unstructured meshes, demonstrating superior generalization on five diverse PDE tasks involving intricate geometries and multi-physics coupling.
 
 ### 2.PhysGTO enables reliable dynamics forecasting over long time horizons
 
-![Task2](figs/fig3.jpg)
+![Task2](figs/result_2.jpg)
 
 PhysGTO consistently outperforms strong baseline models on long-horizon transient flow prediction tasks, demonstrating superior dynamic fidelity and generalization in complex multi-physics systems.
 
 ### 3.PhysGTO scales effectively to large-scale 3D geometry problems
 
-![Task3_1](figs/fig4.jpg)
-![Task3_2](figs/fig5.jpg)
+![Task3_1](figs/result_3.jpg)
+![Task3_2](figs/result_4.jpg)
 
-PhysGTO surpasses state-of-the-art baselines on large-scale 3D aerodynamic benchmarks, achieving higher accuracy and significantly lower computational cost, while maintaining robust generalization across complex real-world vehicle geometries.
+PhysGTO surpasses state-of-the-art baselines on large-scale 3D aerodynamic benchmarks, achieving higher accuracy and significantly lower computational cost, while maintaining generalization across complex real-world vehicle geometries.
 
 ## Get Started
 
@@ -163,10 +163,6 @@ For example, in 3D vehicle pressure estimation, no additional input fields are r
 Additionally, for temporal problems, we incorporate **explicit time encoding** to further enhance model performance.
 This flexible input design significantly improves the model’s ability to adapt and generalize across a wide range of complex scenarios.
 
-
-
-
-
 ## Requirements
 
 - torch==2.1.0
@@ -186,4 +182,6 @@ If you have any questions or want to use the code, please contact [liupw@zju.edu
 ## Contributing
 
 We welcome contributions to improve the dataset or project. Please submit pull requests for review.
+
+
 
