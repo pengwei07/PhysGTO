@@ -211,17 +211,12 @@ class Model(nn.Module):
         batch_size, N_edges = edges.shape[0], edges.shape[1]
         N_sample = int(N_edges * sample_ratio)
         
-        # 为每个批次创建不同的随机索引
-        # 生成形状为 [batch_size, N_edges] 的随机索引矩阵
         rand_indices = torch.stack([torch.randperm(N_edges, device=edges.device) for _ in range(batch_size)])
         
-        # 只保留前 N_sample 个索引
         sample_indices = rand_indices[:, :N_sample]
         
-        # 创建批次索引
         batch_indices = torch.arange(batch_size, device=edges.device).unsqueeze(1).expand(-1, N_sample)
-        
-        # 使用 batch_indices 和 sample_indices 进行索引
+
         sampled_edges = edges[batch_indices, sample_indices]
         
         return sampled_edges
