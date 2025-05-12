@@ -29,14 +29,14 @@ class MixerBlock(nn.Module):
         super().__init__()
         node_size = enc_dim + enc_s_dim
         
-        # GNN部分保持不变
+        # GNN
         self.gnn = GNN(node_size=node_size, 
                       edge_size=enc_dim, 
                       output_size=enc_dim, 
                       layer_norm=True, 
                       edge_direction=edge_direction)
         
-        # Attention模块优化
+        # Attention
         self.ln1 = nn.LayerNorm(enc_dim)
         self.ln2 = nn.LayerNorm(enc_dim)
         self.mha = Atten(n_token=n_token, 
@@ -50,7 +50,7 @@ class MixerBlock(nn.Module):
             nn.Linear(2 * enc_dim, enc_dim)
         )
     def forward(self, V, E, edges, s_enc):
-        # 1. GNN部分
+        # 1. GNN
         V_in = torch.cat([V, s_enc], dim=-1)
         v, e = self.gnn(V_in, E, edges)
         E = E + e
@@ -127,7 +127,7 @@ class Mixer(nn.Module):
 class Decoder(nn.Module):
     def __init__(self, enc_dim=128, state_size=4, dt=0.01):
         super().__init__()
-        # 分离delta预测和状态更新
+
         self.delta_net = nn.Sequential(
             nn.Linear(enc_dim, enc_dim),
             nn.LayerNorm(enc_dim),
