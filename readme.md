@@ -62,7 +62,6 @@ The project
 |          └─── checkpoints
 |                └─── checkpoint.pth
 |               ...
-|          main.py
 |          infer.py
 |          utils.py
 |    └─── task2
@@ -72,9 +71,7 @@ The project
 |               ...
 |          └─── src
 |               ...
-|          main.py
 |          infer.py
-|          run_train.sh
 |          run_infer.sh
 |          utils.py
 |    └─── task3
@@ -84,9 +81,7 @@ The project
 |               ...
 |          └─── src
 |               ...
-|          main.py
 |          infer.py
-|          run_train.sh
 |          run_infer.sh
 |
 └─── data
