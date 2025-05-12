@@ -14,19 +14,13 @@ class Atten(nn.Module):
         # Learnable query
         self.Q = nn.Parameter(torch.randn(n_heads, n_token, self.token_dim) / self.token_dim**0.5)
         
-        # 分离KV投影
+        # kv
         self.kv_1 = nn.Linear(c_dim, 2 * c_dim)
         self.kv_2 = nn.Linear(self.token_dim, 2 * self.token_dim)
         self.q_3 = nn.Linear(c_dim, c_dim)
         
-        # 输出投影加入门控机制
         self.out_proj = nn.Linear(c_dim, c_dim)
-        # self.gate_net = nn.Sequential(
-        #     nn.Linear(c_dim, c_dim),
-        #     nn.Sigmoid()
-        # )
         
-        self.dropout = nn.Dropout(0.1)
 
     def forward(self, x):
                 
