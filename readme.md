@@ -1,4 +1,5 @@
 # PhysGTO
+
 **PhysGTO: An Efficient Graph-Transformer Operator for Learning Physical Dynamics with Manifolds Embedding**
 
 In this work, we propose a novel neural operator model for performing end-to-end simulations in computational mechanics. Accurate and efficient physical simulations are essential in science and engineering, yet traditional numerical solvers face challenges in computational cost when handling simulations across scenarios involving complex geometries, varying boundary/initial conditions, and diverse physical parameters. In recent years, while deep learning offers promising alternatives, existing methods often struggle with flexibility and generalization, particularly on unstructured meshes, which significantly limits their practical applicability. To address these challenges, we propose PhysGTO, a Graph-Transformer Operator for learning physical dynamics through explicit manifold embeddings, which can achieve state-of-the-art prediction accuracy while significantly reducing the computational cost compared to advanced deep learning models.
@@ -177,6 +178,7 @@ If you have any questions or want to use the code, please contact [liupw@zju.edu
 ## Contributing
 
 We welcome contributions to improve the dataset or project. Please submit pull requests for review.
+
 
 
 
